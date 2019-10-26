@@ -1,3 +1,3 @@
-# Motivating email
+# Motivational mails
 
-A simple motivating email message composed using python and CRON
+A simple, motivational mails generator made with python and CRON.
