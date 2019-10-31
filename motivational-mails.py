@@ -8,7 +8,7 @@ SENDER_EMAIL_ADDRESS = os.environ.get('SENDER_EMAIL_LOGIN')
 SENDER_EMAIL_PASSWORD = os.environ.get('SENDER_EMAIL_PASS')
 RECEIVER_EMAIL_ADDRESS = os.environ.get('RECEIVER_EMAIL_LOGIN')
 
-contacts = [RECEIVER_EMAIL_ADDRESS, 'doniak9@gmail.com', SENDER_EMAIL_ADDRESS]
+contacts = [RECEIVER_EMAIL_ADDRESS, 'name@domain.com', SENDER_EMAIL_ADDRESS]
 
 msg = EmailMessage()
 msg['Subject'] =  'Daily motivational message | DMM | As of ' + str(date.today())
