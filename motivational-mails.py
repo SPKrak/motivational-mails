@@ -33,7 +33,7 @@ else:
     msg_content = tag_quote
 
 msg = EmailMessage()
-msg['Subject'] =  'Daily motivational message | DMM | As of ' + str(date.today())
+msg['Subject'] =  'Daily motivational message | DMM | ' + str(date.today())
 msg['From'] = SENDER_EMAIL_ADDRESS
 msg['To'] = ', '.join(contacts)
 msg.set_content("Quote of the day: \n\n" + msg_content)
