@@ -12,14 +12,23 @@ import re
 
 SENDER_EMAIL_ADDRESS = os.environ.get('SENDER_EMAIL_LOGIN')
 SENDER_EMAIL_PASSWORD = os.environ.get('SENDER_EMAIL_PASS')
-RECEIVER_EMAIL_ADDRESS = os.environ.get('RECEIVER_EMAIL_LOGIN')
+
+rsp = input('Please, enter your e-mail address: ')
+try:
+    if rsp != "":
+        RECEIVER_EMAIL_ADDRESS = rsp
+    else:
+        RECEIVER_EMAIL_ADDRESS = os.environ.get('RECEIVER_EMAIL_LOGIN')
+except:
+    print("unknown error occured")
+    exit
 
 contacts = [RECEIVER_EMAIL_ADDRESS, SENDER_EMAIL_ADDRESS]
 url = 'https://www.goodreads.com/quotes/tag/inspiration?page=' + str(randint(1,100))
 response = requests.get(url)
 
 if response.status_code != 200:
-    msg_content = 'I know that it might be difficult, but please... never give up! We all believe in you!'
+    msg_content = 'It seems that Goodreads mirror is offline for some reason... however, don\'t give up!'
 else:
     soup = BeautifulSoup(response.text, "html.parser")
     [x.extract() for x in soup.findAll('script')]
@@ -48,3 +57,5 @@ msg.add_attachment(file_data, maintype='image', subtype=file_type, filename=file
 with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
     smtp.login(SENDER_EMAIL_ADDRESS, SENDER_EMAIL_PASSWORD)
     smtp.send_message(msg)
+
+print("Message has been sent successfully")
